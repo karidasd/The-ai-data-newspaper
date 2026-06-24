@@ -284,7 +284,7 @@ def generate_html(news_items):
                         <p class="top-story-summary">{item['summary']}</p>
                     </div>
                     <div class="hero-image-block">
-                        <span style="font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic;">"Η μεγαλύτερη είδηση της εβδομάδας."</span>
+                        <span style="font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic;">"The biggest story of the week."</span>
                     </div>
                 </a>
                 """
