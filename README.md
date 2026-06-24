@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.png" width="250" alt="The AI & Data Newspaper Logo">
+</p>
+
 # The AI & Data Newspaper 🤖📰
 [![GitHub Pages](https://img.shields.io/badge/Deployed_on-GitHub_Pages-blue)](https://karidasd.github.io/The-ai-data-newspaper/)
 

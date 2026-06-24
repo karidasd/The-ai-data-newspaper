@@ -194,6 +194,7 @@ def generate_html(news_items, archives):
             <div style="text-align: right; margin-bottom: 1rem;">
                 <button id="theme-toggle" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);">🌙</button>
             </div>
+            <img src="logo.png" alt="The AI & Data Newspaper Logo" style="width: 200px; margin-bottom: 1.5rem; border-radius: 8px;">
             <div class="masthead-title">The AI News</div>
             <div class="masthead-info">
                 <span>ΤΕΥΧΟΣ: {date_str}</span>
