@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI & Data Science News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: rgba(30, 41, 59, 0.7);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.5);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            background-image: 
+                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
+            background-attachment: fixed;
+        }
+        
+        header {
+            text-align: center;
+            padding: 4rem 1rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #38bdf8, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .date-badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        main {
+            max-width: 1200px;
+            margin: 3rem auto;
+            padding: 0 1.5rem;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px -10px var(--accent-glow);
+        }
+        
+        .card-source {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+        }
+        
+        .card-summary {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            padding-top: 1rem;
+        }
+        
+        .hero-card {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: center;
+            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.9));
+            padding: 3rem;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-card {
+                grid-template-columns: 1fr;
+                padding: 1.5rem;
+            }
+            h1 { font-size: 2.2rem; }
+        }
+        
+        footer {
+            text-align: center;
+            padding: 3rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>The AI & Data Newspaper</h1>
+        <div class="date-badge">Τελευταία Ενημέρωση: 24 Jun 2026</div>
+    </header>
+    
+    <main>
+<div class="grid">
+            <a href="https://news.mit.edu/2026/exploring-societal-impacts-of-ai-0623" target="_blank" class="card hero-card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">Exploring the societal impacts of AI</h2>
+                    <p class="card-summary">During the AI and Society Forum, leading MIT researchers examined critical questions about AI’s influence on employment and democracy.</p>
+                </div>
+                <div class="card-footer" style="grid-column: 1 / -1;">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/how-to-create-powerful-loops-in-claude-code/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">How to Create Powerful Loops in Claude Code</h2>
+                    <p class="card-summary">Learn about the concept of loops to power your coding agents. 
+The post How to Create Powerful Loops in Claude Code appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/20206/06/deasilex/the-math-skills-every-aspiring-data-scientist-needs-to-master-before-writing-a-single-line-of-code" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">The Math Skills Every Aspiring Data Scientist Needs to Master Before Writing a Single Line of Code</h2>
+                    <p class="card-summary">This article breaks down each essential math discipline, explains its role in data science, and maps out an efficient learning path you can start today.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/i-spent-an-hour-on-a-data-preprocessing-task-before-asking-gemini/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">I Spent an Hour on a Data Preprocessing Task Before Asking Gemini</h2>
+                    <p class="card-summary">How Gemini solved my Pandas problem in seconds, and why data science fundamentals still matter to spot suboptimal solutions
+The post I Spent an Hour on a Data Preprocessing Task Be...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/retrieval-is-filtering-not-search-a-mental-model-for-enterprise-rag/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Retrieval Is Filtering, Not Search: A Mental Model for Enterprise RAG</h2>
+                    <p class="card-summary">Enterprise Document Intelligence [Vol.1 #7A] - Stop searching strings. Filter line_df and toc_df. Pick anchors small, expand context large
+The post Retrieval Is Filtering, Not Sear...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/heres-why-webmcp-is-exciting" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Here’s Why WebMCP is Exciting</h2>
+                    <p class="card-summary">WebMCP is an open web standard that lets websites expose structured, callable tools directly to browser-based agents. Find out what makes it exciting.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/the-era-of-no-code-ai-what-you-need-to-know/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">The Era of No-Code AI: What You Need to Know</h2>
+                    <p class="card-summary">If you are a programmer and you don't feel "special" anymore, you are not alone
+The post The Era of No-Code AI: What You Need to Know appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/5-essential-approaches-to-robust-outlier-detection" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">5 Essential Approaches to Robust Outlier Detection</h2>
+                    <p class="card-summary">Outliers can easily ruin the performance of any predictive analysis models you build: robustly detecting and handling them is crucial in any data project. This article lists and co...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/build-your-own-local-ai-coding-agent-with-gemma-4-and-opencode-2/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Build Your Own Local AI Coding Agent with Gemma 4 and OpenCode</h2>
+                    <p class="card-summary">From installing Ollama to launching OpenCode with a local model, step by step.
+The post Build Your Own Local AI Coding Agent with Gemma 4 and OpenCode appeared first on Towards Dat...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/new-chip-could-help-tiny-robots-traverse-complex-environments-0623" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">New chip could help tiny robots traverse complex environments</h2>
+                    <p class="card-summary">Researchers combined an efficient algorithm with dedicated hardware to rapidly generate 3D maps for navigation using minimal memory and power.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>23 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/2026/06/abacus/abacus-ai-chatllm-review" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">ChatLLM by Abacus AI Review: A Multi-Model AI Workspace Built for Daily Work</h2>
+                    <p class="card-summary">An in-depth review of ChatLLM by Abacus AI, covering supported AI models, AI agents, coding tools, integrations, pricing, usage limits, and how it compares to ChatGPT.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/encoding-categorical-data-for-outlier-detection/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Encoding Categorical Data for Outlier Detection</h2>
+                    <p class="card-summary">Why one-hot encoding isn’t always the best approach, and alternative encodings
+The post Encoding Categorical Data for Outlier Detection appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/how-to-use-claude-code-in-your-browser/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">How to Use Claude Code in Your Browser</h2>
+                    <p class="card-summary">Learn how to apply coding agents to verify work in your browser. 
+The post How to Use Claude Code in Your Browser appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/heres-what-everyone-gets-wrong-about-agentic-ai" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Here’s What Everyone Gets Wrong About Agentic AI</h2>
+                    <p class="card-summary">Agentic AI is not failing because the technology is bad. It is failing because of five specific misconceptions that teams carry into their first deployments and each one is correct...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/when-rag-users-ask-vague-questions-clarify-once-learn-the-default/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">When RAG Users Ask Vague Questions: Clarify Once, Learn the Default</h2>
+                    <p class="card-summary">Enterprise Document Intelligence [Vol.1 #6bis] - Ask one focused clarification, learn the default from the answer, stay silent next time
+The post When RAG Users Ask Vague Questions...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/3-nltk-tricks-for-advanced-text-preprocessing-linguistic-analysis" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">3 NLTK Tricks for Advanced Text Preprocessing & Linguistic Analysis</h2>
+                    <p class="card-summary">In this article, we will walk through three essential NLTK tricks to elevate your text preprocessing: preserving phrase integrity with the MWETokenizer, context-aware lemmatization...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/neural-networks-explained-for-beginners-start-here-if-theyve-confused-you/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Neural Networks, Explained for Beginners: Start Here If They’ve Confused You</h2>
+                    <p class="card-summary">The intuition behind neural networks and why they need activation functions.
+The post Neural Networks, Explained for Beginners: Start Here If They’ve Confused You appeared first on...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>22 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/tool-calling-explained-how-ai-agents-decide-what-to-do-next/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Tool Calling, Explained: How AI Agents Decide What to Do Next</h2>
+                    <p class="card-summary">Understanding how LLMs interact with the world around them, from returning data to taking action
+The post Tool Calling, Explained: How AI Agents Decide What to Do Next appeared fir...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>21 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/reconstructing-the-table-of-contents-a-pdf-forgot-to-ship-so-rag-can-scope-by-section/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Reconstructing the Table of Contents a PDF Forgot to Ship, So RAG Can Scope by Section</h2>
+                    <p class="card-summary">Enterprise Document Intelligence [Vol.1 #5septies] - When a PDF prints a contents page but exposes no outline, two ways to turn it back into structure, plus the page-alignment step...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>21 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/what-are-the-possibilities-to-build-date-tables-in-self-service-environments/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">What Are the Possibilities to Build Date Tables in Self-Service Environments?</h2>
+                    <p class="card-summary">For years, I created date tables with DAX code whenever I didn’t have a way to create them upstream of the data flow. Now I've realised there's another way to do it. Let’s see what...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>21 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/7-crucial-barriers-between-data-teams-and-self-healing-data-architecture/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">7 Crucial Barriers Between Data Teams and Self-Healing Data Architecture</h2>
+                    <p class="card-summary">What data teams need to build with AI to make self-healing data architecture a practical reality
+The post 7 Crucial Barriers Between Data Teams and Self-Healing Data Architecture a...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>20 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/making-a-pdfs-images-searchable-for-rag-without-paying-to-read-them-all/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Making a PDF’s Images Searchable for RAG, Without Paying to Read Them All</h2>
+                    <p class="card-summary">Enterprise Document Intelligence [Vol.1 #5sexies] - image_df tells you where every picture is. Turning the few that matter into searchable text is a separate, cost-ordered job
+The ...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>20 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/materialized-lake-views-in-microsoft-fabric-when-your-medallion-fits-in-a-select-statement/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Materialized Lake Views in Microsoft Fabric: When Your Medallion Fits in a SELECT Statement</h2>
+                    <p class="card-summary">Five surfaces collapsed into one declarative layer. Here's the full story of Materialized Lake Views in Microsoft Fabric - from syntax to the new GA capabilities
+The post Materiali...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>20 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/better-way-to-model-metal-alloys-behavior-0619" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">A better way to model the behavior of metal alloys</h2>
+                    <p class="card-summary">MIT researchers’ approach captures subtle atomic patterns, improving predictions of material properties.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/python-3-14-and-its-new-jit-compiler/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Python 3.14 and its New JIT Compiler</h2>
+                    <p class="card-summary">A technical overview and some benchmarks
+The post Python 3.14 and its New JIT Compiler appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/building-a-custom-gstreamer-plugin-for-nvidia-deepstream/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Building a Custom GStreamer Plugin for NVIDIA DeepStream</h2>
+                    <p class="card-summary">Why Custom Inference in DeepStream?
+The post Building a Custom GStreamer Plugin for NVIDIA DeepStream appeared first on Towards Data Science.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/i-tried-to-schedule-my-etl-pipeline-heres-what-i-didnt-expect/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">I Tried to Schedule My ETL Pipeline. Here’s What I Didn’t Expect.</h2>
+                    <p class="card-summary">What I thought was a scheduling problem turned out to be a portability problem first
+The post I Tried to Schedule My ETL Pipeline. Here’s What I Didn’t Expect. appeared first on To...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/noob-series-loss-function-explained-how-models-know-they-are-wrong" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Loss Function Explained For Noobs (How Models Know They Are Wrong)</h2>
+                    <p class="card-summary">This is a simple guide to understanding loss functions in machine learning and how models learn from their mistakes.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/parse-scanned-pdfs-for-rag-with-easyocr-free-ocr-gives-you-words-not-a-document/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">Parse Scanned PDFs for RAG with EasyOCR: Free OCR Gives You Words, Not a Document</h2>
+                    <p class="card-summary">Enterprise Document Intelligence [Vol.1 #5quinquies] - Same 1974 scanned PDF, two engines. EasyOCR recovers text. Docling recovers text + sections + figures. The structural gap mak...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/practical-sql-tricks-every-data-scientist-should-know" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Practical SQL Tricks Every Data Scientist Should Know</h2>
+                    <p class="card-summary">In this article, we’ll cover essential SQL patterns and workflows that make everyday data analysis cleaner, faster, and easier to scale.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/python-dictionary-tips-and-tricks-you-should-always-remember" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Python Dictionary Tips and Tricks You Should Always Remember</h2>
+                    <p class="card-summary">Master these tips, and your dictionary code will become shorter, safer, and easier to read.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://towardsdatascience.com/gpu-resident-top-k-for-agentic-rag-i-built-a-cuda-kernel-so-my-retrieval-step-would-stop-bouncing-off-the-gpu/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">Towards Data Science</div>
+                    <h2 class="card-title">GPU-Resident Top-K for Agentic RAG: I Built a CUDA Kernel So My Retrieval Step Would Stop Bouncing Off the GPU</h2>
+                    <p class="card-summary">The PCIe transfer latency is silently bottlenecking your agentic inference. Here is how building a custom device-resident vector search kernel bypasses the CPU to unlock determinis...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>19 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://www.kdnuggets.com/advanced-join-techniques-lateral-joins-semi-joins-anti-joins" target="_blank" class="card">
+                <div>
+                    <div class="card-source">KDnuggets</div>
+                    <h2 class="card-title">Advanced Join Techniques: LATERAL Joins, Semi Joins, Anti Joins</h2>
+                    <p class="card-summary">LATERAL joins let a subquery in the FROM clause reference columns from earlier in the same FROM clause. Semi joins return rows where a match exists in another table, without duplic...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>18 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/mit-media-future-tech-massachusetts-can-absolutely-lead" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">MIT in the media: For the future of tech, "Massachusetts can absolutely lead"</h2>
+                    <p class="card-summary">Leaders, faculty across MIT discuss fostering innovation and talent in Greater Boston in special series of articles published alongside the outlet's annual list of 'Tech Power Play...</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>18 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/game-theory-generalists-sometimes-win-out-over-specialists-0617" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">In game theory, generalists sometimes win out over specialists</h2>
+                    <p class="card-summary">Researchers show that for certain kinds of games, an overlooked class of algorithms performs much better than expected.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>17 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/" target="_blank" class="card">
+                <div>
+                    <div class="card-source">AI</div>
+                    <h2 class="card-title">New research shows how AMIE, our medical AI, could help manage health conditions.</h2>
+                    <p class="card-summary">Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>17 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/could-ai-tell-you-where-you-left-your-keys-0617" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">Could AI tell you where you left your keys?</h2>
+                    <p class="card-summary">A new spatial memory system for robots efficiently captures details about the objects they see while exploring their environment.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>17 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            
+            <a href="https://news.mit.edu/2026/mit-initiative-for-new-manufacturing-builds-momentum-0616" target="_blank" class="card">
+                <div>
+                    <div class="card-source">MIT News - Artificial intelligence</div>
+                    <h2 class="card-title">MIT’s Initiative for New Manufacturing builds momentum</h2>
+                    <p class="card-summary">In its first year, INM has worked across research, workforce development, and industry engagement to help accelerate new manufacturing technologies and their real-world deployment.</p>
+                </div>
+                <div class="card-footer" style="">
+                    <span>16 Jun 2026</span>
+                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
+                </div>
+            </a>
+            </div>
+    </main>
+    
+    <footer>
+        <p>Αυτοματοποιημένο περιοδικό δημιουργημένο με Python & GitHub Actions.</p>
+    </footer>
+</body>
+</html>
