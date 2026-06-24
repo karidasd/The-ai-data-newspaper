@@ -14,6 +14,15 @@
             --text-muted: #555555;
             --accent: #b91c1c;
             --border-color: #d1d1d1;
+            --sidebar-bg: #f0f0f0;
+        }
+        body.dark-mode {
+            --bg: #121212;
+            --text-main: #f1f1f1;
+            --text-muted: #a0a0a0;
+            --accent: #ff4747;
+            --border-color: #333333;
+            --sidebar-bg: #1e1e1e;
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--bg); color: var(--text-main); font-family: 'Source Sans Pro', sans-serif; line-height: 1.6; padding: 0 1rem; }
@@ -47,7 +56,7 @@
         .article:hover .article-title, .top-story:hover .top-story-title { color: var(--accent); text-decoration: underline; }
         
         /* ARCHIVE & ABOUT */
-        .sidebar-section { background: #f0f0f0; padding: 2rem; border-radius: 4px; margin-bottom: 4rem; }
+        .sidebar-section { background: var(--sidebar-bg); padding: 2rem; border-radius: 4px; margin-bottom: 4rem; }
         .sidebar-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
         .archive-list { list-style: none; }
         .archive-list li { margin-bottom: 0.5rem; }
@@ -73,6 +82,9 @@
 <body>
     <div class="container">
         <header>
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <button id="theme-toggle" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);">🌙</button>
+            </div>
             <div class="masthead-title">The AI News</div>
             <div class="masthead-info">
                 <span>ΤΕΥΧΟΣ: 24 June 2026</span>
@@ -85,7 +97,7 @@
 
             <a href="https://www.kdnuggets.com/top-7-coding-models-you-can-run-locally-in-2026" target="_blank" class="top-story">
                 <div class="top-story-content">
-                    <div class="article-category">KDnuggets &bull; 24 Jun 2026</div>
+                    <div class="article-category">KDnuggets &bull; 24 Jun 2026 &bull; ⏱️ 11 min read</div>
                     <h2 class="top-story-title">Top 7 Coding Models You Can Run Locally in 2026</h2>
                     <p class="top-story-summary">Explore the best local coding models for private AI coding, fast GGUF inference, agentic workflows, multimodal development, and running powerful open ...</p>
                 </div>
@@ -98,7 +110,7 @@
                 
                         <a href="https://blog.google/innovation-and-ai/models-and-research/google-research/amie-for-disease-management-in-nature/" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/AMIE_Mx_Nature_Social_Visual_Variant_2_Stil.max-1440x810.png');"></div>
-                            <div class="article-category">AI</div>
+                            <div class="article-category">AI &bull; ⏱️ 4 min read</div>
                             <h3 class="article-title">New research shows how AMIE, our medical AI, could help manage health conditions.</h3>
                             <p class="article-summary">Research in “Nature” shows our conversational AI system matches primary care physicians in complex disease management.</p>
                         </a>
@@ -112,49 +124,49 @@
                 
                         <a href="https://news.mit.edu/2026/exploring-societal-impacts-of-ai-0623" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/mit-shass-david-autor.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 12 min read</div>
                             <h3 class="article-title">Exploring the societal impacts of AI</h3>
                             <p class="article-summary">During the AI and Society Forum, leading MIT researchers examined critical questions about AI’s influence on employment and democracy.</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/new-chip-could-help-tiny-robots-traverse-complex-environments-0623" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/MIT-Map-Chip-01.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 10 min read</div>
                             <h3 class="article-title">New chip could help tiny robots traverse complex environments</h3>
                             <p class="article-summary">Researchers combined an efficient algorithm with dedicated hardware to rapidly generate 3D maps for navigation using minimal memory and power.</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/better-way-to-model-metal-alloys-behavior-0619" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/MIT_Modeling-Metals-01a-press.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 10 min read</div>
                             <h3 class="article-title">A better way to model the behavior of metal alloys</h3>
                             <p class="article-summary">MIT researchers’ approach captures subtle atomic patterns, improving predictions of material properties.</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/mit-media-future-tech-massachusetts-can-absolutely-lead" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/52094290589_762e9efbed_b%20%281%29.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 8 min read</div>
                             <h3 class="article-title">MIT in the media: For the future of tech, &quot;Massachusetts can absolutely lead&quot;</h3>
                             <p class="article-summary">Leaders, faculty across MIT discuss fostering innovation and talent in Greater Boston in special series of articles published alongside the outlet&#x27;s a...</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/game-theory-generalists-sometimes-win-out-over-specialists-0617" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202605/mit-lids-game-theory.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 9 min read</div>
                             <h3 class="article-title">In game theory, generalists sometimes win out over specialists</h3>
                             <p class="article-summary">Researchers show that for certain kinds of games, an overlooked class of algorithms performs much better than expected.</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/could-ai-tell-you-where-you-left-your-keys-0617" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/MIT-DescribeAnything-01-press.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 10 min read</div>
                             <h3 class="article-title">Could AI tell you where you left your keys?</h3>
                             <p class="article-summary">A new spatial memory system for robots efficiently captures details about the objects they see while exploring their environment.</p>
                         </a>
                     
                         <a href="https://news.mit.edu/2026/mit-initiative-for-new-manufacturing-builds-momentum-0616" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202606/mit-inm-manufacturing.jpg');"></div>
-                            <div class="article-category">MIT News - Artificial intelligence</div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 10 min read</div>
                             <h3 class="article-title">MIT’s Initiative for New Manufacturing builds momentum</h3>
                             <p class="article-summary">In its first year, INM has worked across research, workforce development, and industry engagement to help accelerate new manufacturing technologies an...</p>
                         </a>
@@ -168,7 +180,7 @@
                 
                         <a href="https://towardsdatascience.com/how-to-create-powerful-loops-in-claude-code/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">How to Create Powerful Loops in Claude Code</h3>
                             <p class="article-summary">Learn about the concept of loops to power your coding agents. 
 The post How to Create Powerful Loops in Claude Code appeared first on Towards Data Sci...</p>
@@ -176,14 +188,14 @@ The post How to Create Powerful Loops in Claude Code appeared first on Towards D
                     
                         <a href="https://www.kdnuggets.com/20206/06/deasilex/the-math-skills-every-aspiring-data-scientist-needs-to-master-before-writing-a-single-line-of-code" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/image1-11.jpg');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 10 min read</div>
                             <h3 class="article-title">The Math Skills Every Aspiring Data Scientist Needs to Master Before Writing a Single Line of Code</h3>
                             <p class="article-summary">This article breaks down each essential math discipline, explains its role in data science, and maps out an efficient learning path you can start toda...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/i-spent-an-hour-on-a-data-preprocessing-task-before-asking-gemini/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">I Spent an Hour on a Data Preprocessing Task Before Asking Gemini</h3>
                             <p class="article-summary">How Gemini solved my Pandas problem in seconds, and why data science fundamentals still matter to spot suboptimal solutions
 The post I Spent an Hour o...</p>
@@ -191,7 +203,7 @@ The post I Spent an Hour o...</p>
                     
                         <a href="https://towardsdatascience.com/retrieval-is-filtering-not-search-a-mental-model-for-enterprise-rag/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Retrieval Is Filtering, Not Search: A Mental Model for Enterprise RAG</h3>
                             <p class="article-summary">Enterprise Document Intelligence [Vol.1 #7A] - Stop searching strings. Filter line_df and toc_df. Pick anchors small, expand context large
 The post Re...</p>
@@ -199,14 +211,14 @@ The post Re...</p>
                     
                         <a href="https://www.kdnuggets.com/heres-why-webmcp-is-exciting" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/KDN-Shittu-Heres-Why-WebMCP-is-Exciting.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 16 min read</div>
                             <h3 class="article-title">Here’s Why WebMCP is Exciting</h3>
                             <p class="article-summary">WebMCP is an open web standard that lets websites expose structured, callable tools directly to browser-based agents. Find out what makes it exciting.</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/the-era-of-no-code-ai-what-you-need-to-know/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">The Era of No-Code AI: What You Need to Know</h3>
                             <p class="article-summary">If you are a programmer and you don&#x27;t feel &quot;special&quot; anymore, you are not alone
 The post The Era of No-Code AI: What You Need to Know appeared first o...</p>
@@ -214,14 +226,14 @@ The post The Era of No-Code AI: What You Need to Know appeared first o...</p>
                     
                         <a href="https://www.kdnuggets.com/5-essential-approaches-to-robust-outlier-detection" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-5-essential-approaches-to-robust-outlier-detection.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 6 min read</div>
                             <h3 class="article-title">5 Essential Approaches to Robust Outlier Detection</h3>
                             <p class="article-summary">Outliers can easily ruin the performance of any predictive analysis models you build: robustly detecting and handling them is crucial in any data proj...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/build-your-own-local-ai-coding-agent-with-gemma-4-and-opencode-2/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Build Your Own Local AI Coding Agent with Gemma 4 and OpenCode</h3>
                             <p class="article-summary">From installing Ollama to launching OpenCode with a local model, step by step.
 The post Build Your Own Local AI Coding Agent with Gemma 4 and OpenCode...</p>
@@ -229,14 +241,14 @@ The post Build Your Own Local AI Coding Agent with Gemma 4 and OpenCode...</p>
                     
                         <a href="https://www.kdnuggets.com/2026/06/abacus/abacus-ai-chatllm-review" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/image1-15.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 12 min read</div>
                             <h3 class="article-title">ChatLLM by Abacus AI Review: A Multi-Model AI Workspace Built for Daily Work</h3>
                             <p class="article-summary">An in-depth review of ChatLLM by Abacus AI, covering supported AI models, AI agents, coding tools, integrations, pricing, usage limits, and how it com...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/encoding-categorical-data-for-outlier-detection/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Encoding Categorical Data for Outlier Detection</h3>
                             <p class="article-summary">Why one-hot encoding isn’t always the best approach, and alternative encodings
 The post Encoding Categorical Data for Outlier Detection appeared first...</p>
@@ -244,7 +256,7 @@ The post Encoding Categorical Data for Outlier Detection appeared first...</p>
                     
                         <a href="https://towardsdatascience.com/how-to-use-claude-code-in-your-browser/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">How to Use Claude Code in Your Browser</h3>
                             <p class="article-summary">Learn how to apply coding agents to verify work in your browser. 
 The post How to Use Claude Code in Your Browser appeared first on Towards Data Scien...</p>
@@ -252,14 +264,14 @@ The post How to Use Claude Code in Your Browser appeared first on Towards Data S
                     
                         <a href="https://www.kdnuggets.com/heres-what-everyone-gets-wrong-about-agentic-ai" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/KDN-Shittu-Heres-What-Everyone-Gets-Wrong-About-Agentic-AI-scaled.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 20 min read</div>
                             <h3 class="article-title">Here’s What Everyone Gets Wrong About Agentic AI</h3>
                             <p class="article-summary">Agentic AI is not failing because the technology is bad. It is failing because of five specific misconceptions that teams carry into their first deplo...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/when-rag-users-ask-vague-questions-clarify-once-learn-the-default/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">When RAG Users Ask Vague Questions: Clarify Once, Learn the Default</h3>
                             <p class="article-summary">Enterprise Document Intelligence [Vol.1 #6bis] - Ask one focused clarification, learn the default from the answer, stay silent next time
 The post When...</p>
@@ -267,14 +279,14 @@ The post When...</p>
                     
                         <a href="https://www.kdnuggets.com/3-nltk-tricks-for-advanced-text-preprocessing-linguistic-analysis" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-3-nltk-tricks-for-advanced-text-preprocessing-linguistic-analysis.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 12 min read</div>
                             <h3 class="article-title">3 NLTK Tricks for Advanced Text Preprocessing &amp; Linguistic Analysis</h3>
                             <p class="article-summary">In this article, we will walk through three essential NLTK tricks to elevate your text preprocessing: preserving phrase integrity with the MWETokenize...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/neural-networks-explained-for-beginners-start-here-if-theyve-confused-you/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Neural Networks, Explained for Beginners: Start Here If They’ve Confused You</h3>
                             <p class="article-summary">The intuition behind neural networks and why they need activation functions.
 The post Neural Networks, Explained for Beginners: Start Here If They’ve ...</p>
@@ -282,7 +294,7 @@ The post Neural Networks, Explained for Beginners: Start Here If They’ve ...</
                     
                         <a href="https://towardsdatascience.com/tool-calling-explained-how-ai-agents-decide-what-to-do-next/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Tool Calling, Explained: How AI Agents Decide What to Do Next</h3>
                             <p class="article-summary">Understanding how LLMs interact with the world around them, from returning data to taking action
 The post Tool Calling, Explained: How AI Agents Decid...</p>
@@ -290,21 +302,21 @@ The post Tool Calling, Explained: How AI Agents Decid...</p>
                     
                         <a href="https://towardsdatascience.com/reconstructing-the-table-of-contents-a-pdf-forgot-to-ship-so-rag-can-scope-by-section/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Reconstructing the Table of Contents a PDF Forgot to Ship, So RAG Can Scope by Section</h3>
                             <p class="article-summary">Enterprise Document Intelligence [Vol.1 #5septies] - When a PDF prints a contents page but exposes no outline, two ways to turn it back into structure...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/what-are-the-possibilities-to-build-date-tables-in-self-service-environments/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">What Are the Possibilities to Build Date Tables in Self-Service Environments?</h3>
                             <p class="article-summary">For years, I created date tables with DAX code whenever I didn’t have a way to create them upstream of the data flow. Now I&#x27;ve realised there&#x27;s anothe...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/7-crucial-barriers-between-data-teams-and-self-healing-data-architecture/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">7 Crucial Barriers Between Data Teams and Self-Healing Data Architecture</h3>
                             <p class="article-summary">What data teams need to build with AI to make self-healing data architecture a practical reality
 The post 7 Crucial Barriers Between Data Teams and Se...</p>
@@ -312,21 +324,21 @@ The post 7 Crucial Barriers Between Data Teams and Se...</p>
                     
                         <a href="https://towardsdatascience.com/making-a-pdfs-images-searchable-for-rag-without-paying-to-read-them-all/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Making a PDF’s Images Searchable for RAG, Without Paying to Read Them All</h3>
                             <p class="article-summary">Enterprise Document Intelligence [Vol.1 #5sexies] - image_df tells you where every picture is. Turning the few that matter into searchable text is a s...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/materialized-lake-views-in-microsoft-fabric-when-your-medallion-fits-in-a-select-statement/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Materialized Lake Views in Microsoft Fabric: When Your Medallion Fits in a SELECT Statement</h3>
                             <p class="article-summary">Five surfaces collapsed into one declarative layer. Here&#x27;s the full story of Materialized Lake Views in Microsoft Fabric - from syntax to the new GA c...</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/python-3-14-and-its-new-jit-compiler/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Python 3.14 and its New JIT Compiler</h3>
                             <p class="article-summary">A technical overview and some benchmarks
 The post Python 3.14 and its New JIT Compiler appeared first on Towards Data Science.</p>
@@ -334,7 +346,7 @@ The post Python 3.14 and its New JIT Compiler appeared first on Towards Data Sc
                     
                         <a href="https://towardsdatascience.com/building-a-custom-gstreamer-plugin-for-nvidia-deepstream/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Building a Custom GStreamer Plugin for NVIDIA DeepStream</h3>
                             <p class="article-summary">Why Custom Inference in DeepStream?
 The post Building a Custom GStreamer Plugin for NVIDIA DeepStream appeared first on Towards Data Science.</p>
@@ -342,7 +354,7 @@ The post Building a Custom GStreamer Plugin for NVIDIA DeepStream appeared first
                     
                         <a href="https://towardsdatascience.com/i-tried-to-schedule-my-etl-pipeline-heres-what-i-didnt-expect/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">I Tried to Schedule My ETL Pipeline. Here’s What I Didn’t Expect.</h3>
                             <p class="article-summary">What I thought was a scheduling problem turned out to be a portability problem first
 The post I Tried to Schedule My ETL Pipeline. Here’s What I Didn’...</p>
@@ -350,35 +362,35 @@ The post I Tried to Schedule My ETL Pipeline. Here’s What I Didn’...</p>
                     
                         <a href="https://www.kdnuggets.com/noob-series-loss-function-explained-how-models-know-they-are-wrong" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/Noob-Series-Loss-Function-Explained-1.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 9 min read</div>
                             <h3 class="article-title">Loss Function Explained For Noobs (How Models Know They Are Wrong)</h3>
                             <p class="article-summary">This is a simple guide to understanding loss functions in machine learning and how models learn from their mistakes.</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/parse-scanned-pdfs-for-rag-with-easyocr-free-ocr-gives-you-words-not-a-document/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">Parse Scanned PDFs for RAG with EasyOCR: Free OCR Gives You Words, Not a Document</h3>
                             <p class="article-summary">Enterprise Document Intelligence [Vol.1 #5quinquies] - Same 1974 scanned PDF, two engines. EasyOCR recovers text. Docling recovers text + sections + f...</p>
                         </a>
                     
                         <a href="https://www.kdnuggets.com/practical-sql-tricks-every-data-scientist-should-know" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-practical-sql-tricks.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 13 min read</div>
                             <h3 class="article-title">Practical SQL Tricks Every Data Scientist Should Know</h3>
                             <p class="article-summary">In this article, we’ll cover essential SQL patterns and workflows that make everyday data analysis cleaner, faster, and easier to scale.</p>
                         </a>
                     
                         <a href="https://www.kdnuggets.com/python-dictionary-tips-and-tricks-you-should-always-remember" target="_blank" class="article">
                             <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-python-dictionary-tips-and-tricks-you-should-always-remember.png');"></div>
-                            <div class="article-category">KDnuggets</div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 8 min read</div>
                             <h3 class="article-title">Python Dictionary Tips and Tricks You Should Always Remember</h3>
                             <p class="article-summary">Master these tips, and your dictionary code will become shorter, safer, and easier to read.</p>
                         </a>
                     
                         <a href="https://towardsdatascience.com/gpu-resident-top-k-for-agentic-rag-i-built-a-cuda-kernel-so-my-retrieval-step-would-stop-bouncing-off-the-gpu/" target="_blank" class="article">
                             <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
-                            <div class="article-category">Towards Data Science</div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
                             <h3 class="article-title">GPU-Resident Top-K for Agentic RAG: I Built a CUDA Kernel So My Retrieval Step Would Stop Bouncing Off the GPU</h3>
                             <p class="article-summary">The PCIe transfer latency is silently bottlenecking your agentic inference. Here is how building a custom device-resident vector search kernel bypasse...</p>
                         </a>
@@ -392,7 +404,7 @@ The post I Tried to Schedule My ETL Pipeline. Here’s What I Didn’...</p>
             <section class="sidebar-section">
                 <h3 class="sidebar-title">Προηγούμενα Τεύχη / Archive</h3>
                 <ul class="archive-list">
-    <li>Κανένα παλαιότερο τεύχος.</li>
+    <li><a href="archive/issue-2026-06-24.html">2026-06-24</a></li>
                 </ul>
             </section>
             
@@ -417,5 +429,26 @@ The post I Tried to Schedule My ETL Pipeline. Here’s What I Didn’...</p>
             <p>Αυτοματοποιημένο ψηφιακό περιοδικό &mdash; Δημιουργημένο με Python & GitHub Actions.</p>
         </footer>
     </div>
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+        }
+        
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
 </body>
 </html>

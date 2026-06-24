@@ -26,7 +26,9 @@ def clean_html(raw_html):
     cleantext = re.sub(cleanr, '', raw_html)
     return cleantext[:150] + "..." if len(cleantext) > 150 else cleantext
 
-def extract_image_url(url):
+def extract_metadata(url):
+    img_url = ""
+    read_time = 1
     try:
         headers = {'User-Agent': 'Mozilla/5.0'}
         response = requests.get(url, headers=headers, timeout=5)
@@ -34,13 +36,18 @@ def extract_image_url(url):
             soup = BeautifulSoup(response.content, 'html.parser')
             og_image = soup.find('meta', property='og:image')
             if og_image and og_image.get('content'):
-                return og_image['content']
-            tw_image = soup.find('meta', name='twitter:image')
-            if tw_image and tw_image.get('content'):
-                return tw_image['content']
+                img_url = og_image['content']
+            else:
+                tw_image = soup.find('meta', name='twitter:image')
+                if tw_image and tw_image.get('content'):
+                    img_url = tw_image['content']
+            
+            text = soup.get_text(separator=' ')
+            words = len(text.split())
+            read_time = max(1, words // 200)
     except Exception as e:
         pass
-    return ""
+    return img_url, read_time
 
 def get_recent_news(days=7):
     all_news = []
@@ -75,9 +82,11 @@ def get_recent_news(days=7):
                 
     all_news.sort(key=lambda x: x['published'], reverse=True)
     
-    print("Extracting images (this may take a minute)...")
+    print("Extracting images and read time (this may take a minute)...")
     for item in all_news:
-        item['image'] = extract_image_url(item['link'])
+        img_url, read_time = extract_metadata(item['link'])
+        item['image'] = img_url
+        item['read_time'] = read_time
         
     return all_news
 
@@ -114,6 +123,15 @@ def generate_html(news_items, archives):
             --text-muted: #555555;
             --accent: #b91c1c;
             --border-color: #d1d1d1;
+            --sidebar-bg: #f0f0f0;
+        }}
+        body.dark-mode {{
+            --bg: #121212;
+            --text-main: #f1f1f1;
+            --text-muted: #a0a0a0;
+            --accent: #ff4747;
+            --border-color: #333333;
+            --sidebar-bg: #1e1e1e;
         }}
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{ background-color: var(--bg); color: var(--text-main); font-family: 'Source Sans Pro', sans-serif; line-height: 1.6; padding: 0 1rem; }}
@@ -147,7 +165,7 @@ def generate_html(news_items, archives):
         .article:hover .article-title, .top-story:hover .top-story-title {{ color: var(--accent); text-decoration: underline; }}
         
         /* ARCHIVE & ABOUT */
-        .sidebar-section {{ background: #f0f0f0; padding: 2rem; border-radius: 4px; margin-bottom: 4rem; }}
+        .sidebar-section {{ background: var(--sidebar-bg); padding: 2rem; border-radius: 4px; margin-bottom: 4rem; }}
         .sidebar-title {{ font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }}
         .archive-list {{ list-style: none; }}
         .archive-list li {{ margin-bottom: 0.5rem; }}
@@ -173,6 +191,9 @@ def generate_html(news_items, archives):
 <body>
     <div class="container">
         <header>
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <button id="theme-toggle" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);">🌙</button>
+            </div>
             <div class="masthead-title">The AI News</div>
             <div class="masthead-info">
                 <span>ΤΕΥΧΟΣ: {date_str}</span>
@@ -192,7 +213,7 @@ def generate_html(news_items, archives):
         html_out += f"""
             <a href="{top_story['link']}" target="_blank" class="top-story">
                 <div class="top-story-content">
-                    <div class="article-category">{top_story['source']} &bull; {ts_date}</div>
+                    <div class="article-category">{top_story['source']} &bull; {ts_date} &bull; ⏱️ {top_story['read_time']} min read</div>
                     <h2 class="top-story-title">{top_story['title']}</h2>
                     <p class="top-story-summary">{top_story['summary']}</p>
                 </div>
@@ -213,7 +234,7 @@ def generate_html(news_items, archives):
                     html_out += f"""
                         <a href="{item['link']}" target="_blank" class="article">
                             <div class="article-image" style="{img_style}"></div>
-                            <div class="article-category">{item['source']}</div>
+                            <div class="article-category">{item['source']} &bull; ⏱️ {item['read_time']} min read</div>
                             <h3 class="article-title">{item['title']}</h3>
                             <p class="article-summary">{item['summary']}</p>
                         </a>
@@ -264,6 +285,27 @@ def generate_html(news_items, archives):
             <p>Αυτοματοποιημένο ψηφιακό περιοδικό &mdash; Δημιουργημένο με Python & GitHub Actions.</p>
         </footer>
     </div>
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+        }
+        
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
 </body>
 </html>
 """
