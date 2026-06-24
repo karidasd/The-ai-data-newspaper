@@ -305,7 +305,11 @@ def generate_html(news_items):
             <p class="about-text">
                 Το <strong>The AI & Data Newspaper</strong> είναι μια πλήρως αυτοματοποιημένη προσπάθεια συγκέντρωσης των κορυφαίων ειδήσεων γύρω από την Τεχνητή Νοημοσύνη και την Επιστήμη Δεδομένων. Η συλλογή των άρθρων, η σελιδοποίηση και η έκδοση του περιοδικού πραγματοποιούνται αυτόματα κάθε εβδομάδα, αντλώντας δεδομένα από κορυφαίες πηγές παγκοσμίως.
             </p>
-            <p class="about-footer">
+            <h2 class="about-title" style="margin-top: 3rem;">About the Newspaper</h2>
+            <p class="about-text">
+                <strong>The AI & Data Newspaper</strong> is a fully automated initiative to aggregate top news around Artificial Intelligence and Data Science. The collection of articles, formatting, and publishing are performed automatically every week, pulling data from top global sources.
+            </p>
+            <p class="about-footer" style="margin-top: 2rem;">
                 Curated by Code &mdash; Powered by GitHub Actions
             </p>
         </section>
