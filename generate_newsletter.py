@@ -35,12 +35,14 @@ def get_recent_news(days=7):
                             summary = entry.get('description', '')
                         summary_clean = clean_html(summary)
                         
+                        import html
+                        
                         recent_news.append({
-                            'title': entry.title,
+                            'title': html.escape(entry.title),
                             'link': entry.link,
                             'published': dt,
-                            'source': source_title,
-                            'summary': summary_clean
+                            'source': html.escape(source_title),
+                            'summary': html.escape(summary_clean)
                         })
         except Exception as e:
             print(f"Error parsing {url}: {e}")
