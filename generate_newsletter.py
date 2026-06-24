@@ -266,6 +266,16 @@ def generate_html(news_items):
     html_out += """
         </main>
         
+        <section class="about-section" style="margin-top: 4rem; padding: 3rem; background: var(--text-main); color: var(--bg); border-radius: 8px; text-align: center;">
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem;">Σχετικά με την Εφημερίδα</h2>
+            <p style="max-width: 800px; margin: 0 auto 1.5rem auto; font-size: 1.1rem; opacity: 0.9;">
+                Το <strong>The AI & Data Newspaper</strong> είναι μια πλήρως αυτοματοποιημένη προσπάθεια συγκέντρωσης των κορυφαίων ειδήσεων γύρω από την Τεχνητή Νοημοσύνη και την Επιστήμη Δεδομένων. Η συλλογή των άρθρων, η σελιδοποίηση και η έκδοση του περιοδικού πραγματοποιούνται αυτόματα κάθε εβδομάδα, αντλώντας δεδομένα από κορυφαίες πηγές παγκοσμίως.
+            </p>
+            <p style="font-family: 'Playfair Display', serif; font-style: italic; opacity: 0.8;">
+                Curated by Code &mdash; Powered by GitHub Actions
+            </p>
+        </section>
+        
         <footer>
             <p>Αυτοματοποιημένο ψηφιακό περιοδικό &mdash; Δημιουργημένο με Python & GitHub Actions.</p>
         </footer>
