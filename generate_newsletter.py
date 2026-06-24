@@ -2,6 +2,7 @@ import feedparser
 import datetime
 import os
 import re
+import html
 
 FEEDS = [
     "https://news.mit.edu/rss/topic/artificial-intelligence2",
@@ -35,8 +36,6 @@ def get_recent_news(days=7):
                             summary = entry.get('description', '')
                         summary_clean = clean_html(summary)
                         
-                        import html
-                        
                         recent_news.append({
                             'title': html.escape(entry.title),
                             'link': entry.link,
@@ -51,201 +50,230 @@ def get_recent_news(days=7):
     return recent_news
 
 def generate_html(news_items):
-    date_str = datetime.datetime.now().strftime("%d %b %Y")
+    date_str = datetime.datetime.now().strftime("%d %B %Y")
     
-    html = f"""<!DOCTYPE html>
+    html_out = f"""<!DOCTYPE html>
 <html lang="el">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI & Data Science News</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>The AI & Data Newspaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {{
-            --bg-color: #0f172a;
-            --card-bg: rgba(30, 41, 59, 0.7);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.5);
+            --bg: #f9f8f6;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --accent: #b91c1c;
+            --border-color: #d1d1d1;
         }}
         
-        * {{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-        }}
+        * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         
         body {{
-            background-color: var(--bg-color);
+            background-color: var(--bg);
             color: var(--text-main);
+            font-family: 'Source Sans Pro', sans-serif;
             line-height: 1.6;
-            min-height: 100vh;
-            background-image: 
-                radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.15) 0px, transparent 50%);
-            background-attachment: fixed;
+            padding: 0 1rem;
         }}
         
+        .container {{
+            max-width: 1200px;
+            margin: 0 auto;
+        }}
+        
+        /* MASTHEAD (HEADER) */
         header {{
             text-align: center;
-            padding: 4rem 1rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 3rem 0 1rem 0;
+            margin-bottom: 2rem;
+            border-bottom: 4px solid var(--text-main);
         }}
         
-        h1 {{
-            font-size: 3rem;
-            font-weight: 800;
-            background: linear-gradient(to right, #38bdf8, #8b5cf6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .masthead-title {{
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1;
             margin-bottom: 1rem;
+            color: var(--text-main);
         }}
         
-        .date-badge {{
-            display: inline-block;
-            background: rgba(255,255,255,0.1);
-            padding: 0.5rem 1.5rem;
-            border-radius: 50px;
+        .masthead-info {{
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid var(--text-main);
+            border-bottom: 1px solid var(--text-main);
+            padding: 0.5rem 0;
             font-size: 0.9rem;
-            color: var(--text-muted);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.05);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }}
         
+        /* MAGAZINE GRID */
         main {{
-            max-width: 1200px;
-            margin: 3rem auto;
-            padding: 0 1.5rem;
-        }}
-        
-        .grid {{
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(12, 1fr);
             gap: 2rem;
         }}
         
-        .card {{
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 1.5rem;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
+        a {{ text-decoration: none; color: inherit; display: block; }}
+        
+        /* TOP STORY (HERO) */
+        .top-story {{
+            grid-column: span 12;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 2px solid var(--border-color);
+        }}
+        
+        .top-story-content {{
             display: flex;
             flex-direction: column;
-            text-decoration: none;
-            color: inherit;
+            justify-content: center;
         }}
         
-        .card:hover {{
-            transform: translateY(-5px);
-            border-color: rgba(56, 189, 248, 0.3);
-            box-shadow: 0 10px 30px -10px var(--accent-glow);
-        }}
-        
-        .card-source {{
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .article-category {{
+            font-weight: 700;
             color: var(--accent);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
             margin-bottom: 0.5rem;
-            font-weight: 600;
         }}
         
-        .card-title {{
-            font-size: 1.25rem;
-            font-weight: 600;
+        .top-story-title {{
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            line-height: 1.1;
             margin-bottom: 1rem;
-            line-height: 1.4;
         }}
         
-        .card-summary {{
+        .top-story-summary {{
+            font-size: 1.2rem;
             color: var(--text-muted);
-            font-size: 0.95rem;
-            flex-grow: 1;
             margin-bottom: 1.5rem;
         }}
         
-        .card-footer {{
+        .hero-image-block {{
+            background: var(--text-main);
+            color: var(--bg);
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            font-size: 0.85rem;
+            justify-content: center;
+            padding: 2rem;
+            text-align: center;
+            border-radius: 4px;
+        }}
+        
+        /* STANDARD ARTICLES */
+        .article {{
+            grid-column: span 4;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }}
+        
+        .article-title {{
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 0.5rem;
+        }}
+        
+        .article-summary {{
+            font-size: 0.95rem;
             color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            padding-top: 1rem;
         }}
         
-        .hero-card {{
-            grid-column: 1 / -1;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(30,41,59,0.9), rgba(15,23,42,0.9));
-            padding: 3rem;
+        .article:hover .article-title, .top-story:hover .top-story-title {{
+            color: var(--accent);
+            text-decoration: underline;
         }}
         
-        @media (max-width: 768px) {{
-            .hero-card {{
-                grid-template-columns: 1fr;
-                padding: 1.5rem;
-            }}
-            h1 {{ font-size: 2.2rem; }}
+        /* RESPONSIVE */
+        @media (max-width: 900px) {{
+            .top-story {{ grid-template-columns: 1fr; }}
+            .article {{ grid-column: span 6; }}
+            .masthead-info {{ flex-direction: column; gap: 0.5rem; }}
+        }}
+        
+        @media (max-width: 600px) {{
+            .article {{ grid-column: span 12; }}
+            .masthead-title {{ font-size: 3.5rem; }}
         }}
         
         footer {{
             text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 4rem;
+            padding: 3rem 0;
+            margin-top: 2rem;
+            border-top: 4px solid var(--text-main);
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
         }}
     </style>
 </head>
 <body>
-    <header>
-        <h1>The AI & Data Newspaper</h1>
-        <div class="date-badge">Τελευταία Ενημέρωση: {date_str}</div>
-    </header>
-    
-    <main>
+    <div class="container">
+        <header>
+            <div class="masthead-title">The AI News</div>
+            <div class="masthead-info">
+                <span>ΤΕΥΧΟΣ: {date_str}</span>
+                <span>DATA SCIENCE & ARTIFICIAL INTELLIGENCE</span>
+                <span>ΔΩΡΕΑΝ ΕΚΔΟΣΗ</span>
+            </div>
+        </header>
+        
+        <main>
 """
     if not news_items:
-        html += '<p style="text-align:center;">Δεν βρέθηκαν νέα άρθρα για αυτή την εβδομάδα.</p>'
+        html_out += '<div style="grid-column: span 12; text-align: center; padding: 3rem; font-family: \'Playfair Display\', serif; font-size: 1.5rem;">Δεν βρέθηκαν νέα άρθρα για αυτή την εβδομάδα.</div>'
     else:
-        html += '<div class="grid">'
         for i, item in enumerate(news_items):
-            card_class = "card hero-card" if i == 0 else "card"
+            date_formatted = item['published'].strftime('%d %b %Y')
             
-            # Simple fallback layout for hero card footer
-            html += f"""
-            <a href="{item['link']}" target="_blank" class="{card_class}">
-                <div>
-                    <div class="card-source">{item['source']}</div>
-                    <h2 class="card-title">{item['title']}</h2>
-                    <p class="card-summary">{item['summary']}</p>
-                </div>
-                <div class="card-footer" style="{'grid-column: 1 / -1;' if i==0 else ''}">
-                    <span>{item['published'].strftime('%d %b %Y')}</span>
-                    <span style="color: var(--accent)">Διάβασε περισσότερα &rarr;</span>
-                </div>
-            </a>
-            """
-        html += '</div>'
+            if i == 0:
+                html_out += f"""
+                <a href="{item['link']}" target="_blank" class="top-story">
+                    <div class="top-story-content">
+                        <div class="article-category">{item['source']} &bull; {date_formatted}</div>
+                        <h2 class="top-story-title">{item['title']}</h2>
+                        <p class="top-story-summary">{item['summary']}</p>
+                    </div>
+                    <div class="hero-image-block">
+                        <span style="font-family: 'Playfair Display', serif; font-size: 2rem; font-style: italic;">"Η μεγαλύτερη είδηση της εβδομάδας."</span>
+                    </div>
+                </a>
+                """
+            else:
+                html_out += f"""
+                <a href="{item['link']}" target="_blank" class="article">
+                    <div class="article-category">{item['source']}</div>
+                    <h3 class="article-title">{item['title']}</h3>
+                    <p class="article-summary">{item['summary']}</p>
+                </a>
+                """
+                
+    html_out += """
+        </main>
         
-    html += """
-    </main>
-    
-    <footer>
-        <p>Αυτοματοποιημένο περιοδικό δημιουργημένο με Python & GitHub Actions.</p>
-    </footer>
+        <footer>
+            <p>Αυτοματοποιημένο ψηφιακό περιοδικό &mdash; Δημιουργημένο με Python & GitHub Actions.</p>
+        </footer>
+    </div>
 </body>
 </html>
 """
-    return html
+    return html_out
 
 def main():
     print("Fetching news...")
