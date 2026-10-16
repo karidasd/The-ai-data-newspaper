@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The AI & Data Newspaper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #f9f8f6;
+            --text-main: #1a1a1a;
+            --text-muted: #555555;
+            --accent: #b91c1c;
+            --border-color: #d1d1d1;
+            --sidebar-bg: #f0f0f0;
+        }
+        body.dark-mode {
+            --bg: #121212;
+            --text-main: #f1f1f1;
+            --text-muted: #a0a0a0;
+            --accent: #ff4747;
+            --border-color: #333333;
+            --sidebar-bg: #1e1e1e;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: var(--bg); color: var(--text-main); font-family: 'Source Sans Pro', sans-serif; line-height: 1.6; padding: 0 1rem; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        
+        header { text-align: center; padding: 3rem 0 1rem 0; margin-bottom: 2rem; border-bottom: 4px solid var(--text-main); }
+        .masthead-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-weight: 900; text-transform: uppercase; letter-spacing: -2px; line-height: 1; margin-bottom: 1rem; color: var(--text-main); }
+        .masthead-info { display: flex; justify-content: space-between; border-top: 1px solid var(--text-main); border-bottom: 1px solid var(--text-main); padding: 0.5rem 0; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+        
+        a { text-decoration: none; color: inherit; display: block; }
+        
+        /* TOP STORY */
+        .top-story { display: grid; grid-template-columns: 2fr 1.5fr; gap: 2rem; padding-bottom: 2rem; border-bottom: 2px solid var(--text-main); margin-bottom: 3rem; }
+        .top-story-content { display: flex; flex-direction: column; justify-content: center; }
+        .top-story-image { min-height: 350px; background-size: cover; background-position: center; border-radius: 4px; border: 1px solid var(--border-color); }
+        
+        .article-category { font-weight: 700; color: var(--accent); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; margin-bottom: 0.5rem; }
+        .top-story-title { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-weight: 900; line-height: 1.1; margin-bottom: 1rem; }
+        .top-story-summary { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 1.5rem; }
+        
+        /* CATEGORY SECTIONS */
+        .category-section { margin-bottom: 4rem; }
+        .category-header { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; border-bottom: 2px solid var(--border-color); padding-bottom: 0.5rem; margin-bottom: 2rem; }
+        
+        .articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem; }
+        .article { padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .article-image { height: 200px; background-size: cover; background-position: center; margin-bottom: 1rem; border-radius: 4px; border: 1px solid var(--border-color); }
+        .article-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+        .article-summary { font-size: 0.95rem; color: var(--text-muted); }
+        
+        .article:hover .article-title, .top-story:hover .top-story-title { color: var(--accent); text-decoration: underline; }
+        
+        /* ARCHIVE & ABOUT */
+        .sidebar-section { background: var(--sidebar-bg); padding: 2rem; border-radius: 4px; margin-bottom: 4rem; }
+        .sidebar-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem; }
+        .archive-list { list-style: none; }
+        .archive-list li { margin-bottom: 0.5rem; }
+        .archive-list a { color: var(--text-main); text-decoration: underline; }
+        .archive-list a:hover { color: var(--accent); }
+        
+        .subscribe-section { margin: 4rem 0; padding: 4rem 2rem; background: #111; color: #fff; text-align: center; border-radius: 8px; }
+        .subscribe-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; margin-bottom: 1rem; }
+        .subscribe-form { display: flex; justify-content: center; max-width: 500px; margin: 0 auto; }
+        .subscribe-input { padding: 1rem; flex-grow: 1; border: none; border-radius: 4px 0 0 4px; outline: none; font-size: 1rem; }
+        .subscribe-btn { padding: 1rem 2rem; background: var(--accent); color: white; border: none; border-radius: 0 4px 4px 0; font-weight: 600; cursor: pointer; font-size: 1rem; }
+        
+        @media (max-width: 900px) {
+            .top-story { grid-template-columns: 1fr; }
+            .top-story-image { min-height: 250px; order: -1; }
+            .masthead-info { flex-direction: column; gap: 0.5rem; text-align: center; }
+            .subscribe-form { flex-direction: column; }
+            .subscribe-input { border-radius: 4px; margin-bottom: 1rem; }
+            .subscribe-btn { border-radius: 4px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div style="text-align: right; margin-bottom: 1rem;">
+                <button id="theme-toggle" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--text-main);">🌙</button>
+            </div>
+            <img src="logo.png" alt="The AI & Data Newspaper Logo" style="width: 200px; margin-bottom: 1.5rem; border-radius: 8px;">
+            <div class="masthead-title">The AI News</div>
+            <div class="masthead-info">
+                <span>ΤΕΥΧΟΣ: 16 October 2026</span>
+                <span>DATA SCIENCE & ARTIFICIAL INTELLIGENCE</span>
+                <span>ΔΩΡΕΑΝ ΕΚΔΟΣΗ</span>
+            </div>
+        </header>
+        
+        <main>
+
+            <a href="https://towardsdatascience.com/deploying-data-science-tools-part-1/" target="_blank" class="top-story">
+                <div class="top-story-content">
+                    <div class="article-category">Towards Data Science &bull; 16 Oct 2026 &bull; ⏱️ 1 min read</div>
+                    <h2 class="top-story-title">Deploying Data Science Tools: Part 1</h2>
+                    <p class="top-story-summary">Getting your data science code running anywhere
+The post Deploying Data Science Tools: Part 1 appeared first on Towards Data Science.</p>
+                </div>
+                <div class="top-story-image" style="background: linear-gradient(135deg, #cbd5e1, #94a3b8);"></div>
+            </a>
+        
+                <section class="category-section">
+                    <h2 class="category-header">Industry News</h2>
+                    <div class="articles-grid">
+                
+                        <a href="https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-argon/" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://storage.googleapis.com/gweb-uniblog-publish-prod/images/gemini-4-argon__blog-header__2784x1566.width-1300.png');"></div>
+                            <div class="article-category">AI &bull; ⏱️ 17 min read</div>
+                            <h3 class="article-title">Gemini 4 Argon: Built to solve your hardest problems</h3>
+                            <p class="article-summary">TBD</p>
+                        </a>
+                    
+                    </div>
+                </section>
+                
+                <section class="category-section">
+                    <h2 class="category-header">Research & Papers</h2>
+                    <div class="articles-grid">
+                
+                        <a href="https://news.mit.edu/2026/state-of-supply-chain-sustainability-report-1015" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202609/mit-ctl-sustainability.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 8 min read</div>
+                            <h3 class="article-title">State of Supply Chain Sustainability Report finds corporate commitment at record high, but governance lags behind</h3>
+                            <p class="article-summary">MIT&#x27;s Center for Transportation and Logistics finds sustainability commitments are strong, but governance gaps and external disruptions prevent execut...</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/ai-model-decodes-language-cells-use-communicate-1015" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202609/mit-whitehead-lung.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 8 min read</div>
+                            <h3 class="article-title">AI model decodes the language cells use to communicate</h3>
+                            <p class="article-summary">A new computational approach reveals how cells communicate to assemble into tissues. This could accelerate stem cell engineering, improve disease mode...</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/collision-between-ai-your-brain-and-society-eric-so-book-1015" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202610/MIT-3Q-Collision-01-press_1.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 10 min read</div>
+                            <h3 class="article-title">Q&amp;A: The “collision” between AI, your brain, and society</h3>
+                            <p class="article-summary">In a new book, Professor Eric So explores how the technology affects our thinking skills.</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/researchers-improve-weather-forecasts-looking-two-six-weeks-out-1014" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202610/MIT-Weather-Forecasting-01.gif');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 11 min read</div>
+                            <h3 class="article-title">Researchers improve weather forecasts looking two to six weeks out</h3>
+                            <p class="article-summary">A new machine-learning approach broke records for weather forecasting for an important time frame in emergency planning.</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/how-artificial-neural-networks-build-their-own-learning-machinery-1013" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202609/mit-mcgovern-self-supervisedlearning.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 8 min read</div>
+                            <h3 class="article-title">How artificial neural networks build their own learning machinery</h3>
+                            <p class="article-summary">Machine-learning networks can learn without detailed instructions from a designer. Those that do may offer insight into how the brain reorganizes itse...</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/mit-lincoln-laboratory-hosts-national-security-commission-emerging-biotechnology-1013" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202609/mit-lincolnlab-biosecurity.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 9 min read</div>
+                            <h3 class="article-title">MIT Lincoln Laboratory hosts National Security Commission on Emerging Biotechnology</h3>
+                            <p class="article-summary">Roadshow event highlights Massachusetts&#x27; defense-biotechnology ecosystem.</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/qa-building-accountability-behind-our-words-and-ai-civic-conversations-1013" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202610/MIT-3Q-AI-Accountability-01-Press.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 16 min read</div>
+                            <h3 class="article-title">Q&amp;A: Building accountability behind our words — and AI’s — in civic conversations</h3>
+                            <p class="article-summary">Professor Deb Roy contends there should be someone who is “answerable” for every piece of text in public life, no matter its origins.</p>
+                        </a>
+                    
+                        <a href="https://news.mit.edu/2026/3-questions-best-path-forward-for-ai-academia-1008" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://news.mit.edu/sites/default/files/images/202610/ai-and-academia-00_0.jpg');"></div>
+                            <div class="article-category">MIT News - Artificial intelligence &bull; ⏱️ 8 min read</div>
+                            <h3 class="article-title">3 Questions: What is the best path forward for AI in academia?</h3>
+                            <p class="article-summary">MIT Statistics and Data Science Center Director Alexander (Sasha) Rakhlin shares important considerations for departments and institutions.</p>
+                        </a>
+                    
+                    </div>
+                </section>
+                
+                <section class="category-section">
+                    <h2 class="category-header">Tutorials & Data Science</h2>
+                    <div class="articles-grid">
+                
+                        <a href="https://www.kdnuggets.com/5-best-resources-to-learn-about-world-models-in-2026" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-5-best-resources-to-learn-about-world-models-in-2026-feature.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 8 min read</div>
+                            <h3 class="article-title">5 Best Resources to Learn About World Models in 2026</h3>
+                            <p class="article-summary">World models could be the next big shift in AI. Learn more right now.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/i-reran-my-python-314-jit-benchmarks-on-python-315/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">I Reran My Python 3.14 JIT Benchmarks on Python 3.15</h3>
+                            <p class="article-summary">The same three workloads show a much stronger JIT, but it still doesn&#x27;t help every program
+The post I Reran My Python 3.14 JIT Benchmarks on Python 3....</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/2026/10/abacus/abacus-ai-review-criticisms-facts-what-users-should-know" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/image2-22.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 36 min read</div>
+                            <h3 class="article-title">Abacus AI Honest Review: Key Criticisms, Facts &amp; What Users Should Know</h3>
+                            <p class="article-summary">This review highlights the main critiques of Abacus AI, its price, user reviews, reliability of workflows, and real-life use cases to assist you in ev...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/jev-your-engines-seven-open-decision-models-vs-a-generative-llm/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Jev Your Engines: Seven Open Decision Models vs. a Generative LLM</h3>
+                            <p class="article-summary">A hands-on Jev repo comparison of routing accuracy, latency, and output reliability
+The post Jev Your Engines: Seven Open Decision Models vs. a Genera...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/what-openais-719-math-papers-mean-for-data-science/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">What OpenAI’s 719 Math Papers Mean for Data Science</h3>
+                            <p class="article-summary">Matching messy text, choosing representative examples, and generating comparison data.
+The post What OpenAI’s 719 Math Papers Mean for Data Science ap...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/building-ai-applications-with-open-source-agentic-api-server-ogx" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/KDN-Shittu-Building-AI-Applications-with-Open-Source-Agentic-API-Server-OGX-scaled.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 11 min read</div>
+                            <h3 class="article-title">Building AI Applications with OGX, the Open-Source Agentic API Server</h3>
+                            <p class="article-summary">OGX is an open-source agentic API server for building OpenAI-compatible AI applications, using any model and any infrastructure.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/how-many-guesses-does-it-take-to-crack-an-ais-random-number/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">How Many Guesses Does It Take to Crack an AI&#x27;s &quot;Random&quot; Number?</h3>
+                            <p class="article-summary">I read the exact answer distribution from the logits of open models, base and instruction-tuned, and turned it into bits and guesses-to-crack.
+The pos...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/7-open-source-ai-tools-that-can-replace-paid-subscriptions" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/awan_7_opensource_ai_tools_replace_paid_subscriptions_1.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 10 min read</div>
+                            <h3 class="article-title">7 Open-Source AI Tools That Can Replace Paid Subscriptions</h3>
+                            <p class="article-summary">Find open-source alternatives to OpenAI API, Midjourney, Claude Code, Notion, Wispr Flow, Grammarly, and NotebookLM that you can run locally or self-h...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/i-tested-four-ways-to-give-an-ai-assistant-a-memory-the-obvious-one-was-the-worst-value/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">I Tested Four Ways to Give an AI Assistant a Memory. The Obvious One Was the Worst Value.</h3>
+                            <p class="article-summary">Pasting in the whole chat history cost 20 to 31 times more than looking up notes, and it did no better on the tasks.
+The post I Tested Four Ways to Gi...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/does-stacking-beat-your-best-model/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Does Stacking Beat Your Best Model?</h3>
+                            <p class="article-summary">It only helps when your models make different mistakes.
+The post Does Stacking Beat Your Best Model? appeared first on Towards Data Science.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/how-do-word-embeddings-capture-relationships-between-words/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">How Do Word Embeddings Capture Relationships Between Words?</h3>
+                            <p class="article-summary">Understanding how words become related in a learned vector space
+The post How Do Word Embeddings Capture Relationships Between Words? appeared first o...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/few-shot-text-classification-with-scikit-llm" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-few-shot-text-classification-with-scikit-llm-feature.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 7 min read</div>
+                            <h3 class="article-title">Few-Shot Text Classification with Scikit-LLM</h3>
+                            <p class="article-summary">Leveraging Scikit-LLM for one of the simplest yet most practical text classification tasks utilized in the modern AI landscape: few-shot classificatio...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/voting-on-features-federated-feature-selection-without-sharing-data/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Voting on Features: Federated Feature Selection Without Sharing Data</h3>
+                            <p class="article-summary">Hospitals, banks, and edge devices can agree on which features matter by sharing votes instead of rows, runnable in NVIDIA FLARE and Flower
+The post V...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/5-fun-projects-for-llm-inference-engineering" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/5-Fun-Projects-for-LLM-Inference-Engineering.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 7 min read</div>
+                            <h3 class="article-title">5 Fun Projects for LLM Inference Engineering</h3>
+                            <p class="article-summary">Want to understand what makes LLMs fast? Build the systems yourself.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/a-scaffold-at-the-gate-building-ai-applications-that-can-evolve/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">A Scaffold at the Gate: Building AI Applications That Can Evolve</h3>
+                            <p class="article-summary">A technical reflection on why data scientists need software engineering principles when AI agents write code.
+The post A Scaffold at the Gate: Buildin...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/your-agent-doesnt-need-more-freedom/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Your Agent Doesn&#x27;t Need More Freedom</h3>
+                            <p class="article-summary">Agents got good. The hard part now is everything around them.
+The post Your Agent Doesn&#x27;t Need More Freedom appeared first on Towards Data Science.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/three-samplers-one-posterior-nuts-vs-emcee-vs-nested-sampling/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Three Samplers, One Posterior: NUTS vs. Emcee vs. Nested Sampling</h3>
+                            <p class="article-summary">Benchmarking NumPyro, affine-invariant MCMC, and dynesty against exact ground truth and watching them fail.
+The post Three Samplers, One Posterior: NU...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/the-roadmap-to-mastering-agentic-ai-systems-in-2026" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-chugani-roadmap-building-agentic-ai-systems-2026-feature.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 11 min read</div>
+                            <h3 class="article-title">The Roadmap to Mastering Agentic AI Systems in 2026</h3>
+                            <p class="article-summary">A four-level technical roadmap for building agentic AI systems, from single cognitive loops and stateful memory through multi-agent swarms and product...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/coding-agents-can-solve-the-task-but-how-much-work-did-they-waste/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Coding Agents Can Solve the Task — But How Much Work Did They Waste?</h3>
+                            <p class="article-summary">Real repositories, seeded agent decisions: what 50,400 runs show about wasted turns, patch churn, and which harness rules help
+The post Coding Agents ...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/5-autohotkey-scripts-for-data-scientists" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-5-autohotkey-scripts-for-data-scientists-feature.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 11 min read</div>
+                            <h3 class="article-title">5 AutoHotkey Scripts for Data Scientists</h3>
+                            <p class="article-summary">Five AutoHotkey v2 scripts that handle repetitive Windows desktop work around data analysis: launching a project workspace, converting clipboard IDs t...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/how-to-leverage-nlp-for-product-data-science/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">How to Leverage NLP for Product Data Science</h3>
+                            <p class="article-summary">A practical guide to strengthening churn, CLV, and other traditional models with text
+The post How to Leverage NLP for Product Data Science appeared f...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/the-rise-of-ai-software-clones-why-rea-and-artcraft-are-going-viral" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/awan_rise_ai_software_clones_rea_artcraft_going_viral_2.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 7 min read</div>
+                            <h3 class="article-title">The Rise of AI Software Clones: Why REA and ArtCraft Are Going Viral</h3>
+                            <p class="article-summary">REA and ArtCraft are two projects driving a wave of AI-built clones that attempt to recreate Adobe and Microsoft software, letting developers reverse-...</p>
+                        </a>
+                    
+                        <a href="https://www.kdnuggets.com/chatgpt-vs-claude-vs-gemini-for-data-science-work-heres-what-i-found" target="_blank" class="article">
+                            <div class="article-image" style="background-image: url('https://www.kdnuggets.com/wp-content/uploads/kdn-chugani-chatgpt-claude-gemini-data-science-work-feature.png');"></div>
+                            <div class="article-category">KDnuggets &bull; ⏱️ 9 min read</div>
+                            <h3 class="article-title">ChatGPT vs. Claude vs. Gemini for Data Science Work: Here’s What I Found</h3>
+                            <p class="article-summary">Compare ChatGPT, Claude, and Gemini across the data science tasks that matter most to statisticians and analysts.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/we-specified-an-ai-agent-in-2016-we-called-it-analytics/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">We Specified an AI Agent in 2016. We Called It Analytics.</h3>
+                            <p class="article-summary">Re-reading my own IBM patent on real-time concert feedback as what it actually was: an agentic loop with multimodal perception, memory-grounded infere...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/i-built-a-trap-for-ai-image-judges-they-walked-into-a-different-one/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">I Built a Trap for AI Image Judges. They Walked Into a Different One.</h3>
+                            <p class="article-summary">Three vision AI models ignored the pretty image, yet GPT-4o invented answers and Claude kept answering B.
+The post I Built a Trap for AI Image Judges....</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/a-practical-guide-to-openais-new-decisions-api/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">A Practical Guide to OpenAI&#x27;s New Decisions API</h3>
+                            <p class="article-summary">Is this the JEV killer?
+The post A Practical Guide to OpenAI&#x27;s New Decisions API appeared first on Towards Data Science.</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/agentic-systems-a-practitioners-guide-to-6-advanced-architectural-patterns/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Agentic Systems: A Practitioner&#x27;s Guide to 6 Advanced Architectural Patterns</h3>
+                            <p class="article-summary">Beyond basic ReAct loops: six production-oriented architectures for building autonomous, reliable, and scalable LLM agents.
+The post Agentic Systems: ...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/how-can-ai-agents-read-untrusted-sources-safely/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">How Can AI Agents Read Untrusted Sources Safely?</h3>
+                            <p class="article-summary">Add architectural guardrails around how agents read untrusted sources and use them in the workflow.
+The post How Can AI Agents Read Untrusted Sources ...</p>
+                        </a>
+                    
+                        <a href="https://towardsdatascience.com/why-temperature-0-isnt-deterministic/" target="_blank" class="article">
+                            <div class="article-image" style="background: linear-gradient(135deg, #e2e8f0, #cbd5e1);"></div>
+                            <div class="article-category">Towards Data Science &bull; ⏱️ 1 min read</div>
+                            <h3 class="article-title">Why Temperature 0 Isn&#x27;t Deterministic</h3>
+                            <p class="article-summary">A one-line formula for how often an LLM&#x27;s top token flips, and why identical
+completions fall apart after about a hundred tokens
+The post Why Temperat...</p>
+                        </a>
+                    
+                    </div>
+                </section>
+                
+        </main>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem;">
+            <section class="sidebar-section">
+                <h3 class="sidebar-title">Προηγούμενα Τεύχη / Archive</h3>
+                <ul class="archive-list">
+    <li><a href="archive/issue-2026-10-09.html">2026-10-09</a></li><li><a href="archive/issue-2026-10-02.html">2026-10-02</a></li><li><a href="archive/issue-2026-09-25.html">2026-09-25</a></li><li><a href="archive/issue-2026-09-18.html">2026-09-18</a></li><li><a href="archive/issue-2026-09-11.html">2026-09-11</a></li><li><a href="archive/issue-2026-09-04.html">2026-09-04</a></li><li><a href="archive/issue-2026-08-28.html">2026-08-28</a></li><li><a href="archive/issue-2026-08-21.html">2026-08-21</a></li><li><a href="archive/issue-2026-08-14.html">2026-08-14</a></li><li><a href="archive/issue-2026-08-07.html">2026-08-07</a></li><li><a href="archive/issue-2026-07-31.html">2026-07-31</a></li><li><a href="archive/issue-2026-07-24.html">2026-07-24</a></li><li><a href="archive/issue-2026-07-17.html">2026-07-17</a></li><li><a href="archive/issue-2026-07-10.html">2026-07-10</a></li><li><a href="archive/issue-2026-07-03.html">2026-07-03</a></li><li><a href="archive/issue-2026-06-26.html">2026-06-26</a></li><li><a href="archive/issue-2026-06-24.html">2026-06-24</a></li>
+                </ul>
+            </section>
+            
+            <section class="sidebar-section">
+                <h3 class="sidebar-title">Σχετικά με την Εφημερίδα</h3>
+                <p style="margin-bottom: 1rem;"><strong>The AI & Data Newspaper</strong> είναι μια πλήρως αυτοματοποιημένη προσπάθεια συγκέντρωσης των κορυφαίων ειδήσεων. Curated by Code &mdash; Powered by GitHub Actions.</p>
+                <p><strong>About the Newspaper:</strong> A fully automated initiative to aggregate top news. Curated by Code.</p>
+            </section>
+        </div>
+        
+        <section class="subscribe-section">
+            <h2 class="subscribe-title">Subscribe to our Newsletter</h2>
+            <p style="margin-bottom: 2rem; font-size: 1.1rem; opacity: 0.8;">Get the latest AI & Data Science news delivered directly to your inbox every week.</p>
+            <form action="#" method="POST" class="subscribe-form">
+                <input type="email" placeholder="Your email address" class="subscribe-input" required>
+                <button type="submit" class="subscribe-btn">Subscribe</button>
+            </form>
+            <p style="margin-top: 1rem; font-size: 0.8rem; opacity: 0.5;">* Insert your Mailchimp or Substack form action URL here to activate.</p>
+        </section>
+        
+        <footer>
+            <p>Αυτοματοποιημένο ψηφιακό περιοδικό &mdash; Δημιουργημένο με Python & GitHub Actions.</p>
+        </footer>
+    </div>
+    <script>
+        const toggleBtn = document.getElementById('theme-toggle');
+        const body = document.body;
+        
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme === 'dark') {
+            body.classList.add('dark-mode');
+            toggleBtn.textContent = '☀️';
+        }
+        
+        toggleBtn.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('theme', 'dark');
+                toggleBtn.textContent = '☀️';
+            } else {
+                localStorage.setItem('theme', 'light');
+                toggleBtn.textContent = '🌙';
+            }
+        });
+    </script>
+</body>
+</html>
